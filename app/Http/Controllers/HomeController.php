@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Member;
+use App\Movie;
+use App\Lending;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $data_counts = [
+            'member' => Member::count(),
+            'movie' => Movie::count(),
+            'lending' => Lending::count()
+        ];
+
+        return view('dashboard', compact('data_counts'));
     }
 }

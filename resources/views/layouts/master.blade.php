@@ -15,11 +15,15 @@
     <link rel="stylesheet" href="/assets/css/slicknav.min.css">
     <!-- amchart css -->
     <link rel="stylesheet" href="/assets/css/export.css" type="text/css" media="all" />
+
+    @yield('extra-css')
+    
     <!-- others css -->
     <link rel="stylesheet" href="/assets/css/typography.css">
     <link rel="stylesheet" href="/assets/css/default-css.css">
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
+    <link rel="stylesheet" href="/assets/css/sweetalert2.min.css">
     <!-- modernizr css -->
     <script src="/assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
@@ -50,7 +54,7 @@
                         <div class="clearfix d-md-inline-block d-block">
                             <div class="user-profile m-0">
                                 <img class="avatar user-thumb" src="/assets/images/author/avatar.png" alt="avatar">
-                                <h4 class="user-name dropdown-toggle" data-toggle="dropdown">@yield('username') <i class="fa fa-angle-down"></i></h4>
+                                <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }} <i class="fa fa-angle-down"></i></h4>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -77,9 +81,9 @@
                         <div class="horizontal-menu">
                             <nav>
                                 <ul id="nav_menu">
-                                    <li><a href=""><i class="ti-dashboard"></i> <span>Dashboard</span></a></li>
-                                    <li><a href=""><i class="ti-video-clapper"></i> <span>Movies</span></a></li>
-                                    <li><a href=""><i class="ti-user"></i> <span>Members</span></a></li>
+                                    <li><a href="{{ route('home') }}"><i class="ti-dashboard"></i> <span>Dashboard</span></a></li>
+                                    <li><a href="{{ route('movie_index') }}"><i class="ti-video-clapper"></i> <span>Movies</span></a></li>
+                                    <li><a href="{{ route('member_index') }}"><i class="ti-user"></i> <span>Members</span></a></li>
                                     <li><a href=""><i class="ti-location-arrow"></i> <span>Lendings</span></a></li>
                                 </ul>
                             </nav>
@@ -114,6 +118,9 @@
     <script src="/assets/js/metisMenu.min.js"></script>
     <script src="/assets/js/jquery.slimscroll.min.js"></script>
     <script src="/assets/js/jquery.slicknav.min.js"></script>
+    <script src="/assets/js/sweetalert2.min.js"></script>
+
+    @yield('extra-js')
 
     <!-- others plugins -->
     <script src="/assets/js/plugins.js"></script>

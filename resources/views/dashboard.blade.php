@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
 @section('title', 'Dashboard')
-@section('username', 'Rienaldi')
 
 @section('content')
 	<div class="col-lg-8">
@@ -11,7 +10,7 @@
 	                <div class="seo-fact sbg1">
 	                    <div class="p-4 d-flex justify-content-between align-items-center">
 	                        <div class="seofct-icon"><i class="ti-video-clapper"></i>Total Movies</div>
-	                        <h2>0</h2>
+	                        <h2>{{ $data_counts['movie'] }}</h2>
 	                    </div>
 	                </div>
 	            </div>
@@ -21,7 +20,7 @@
 	                <div class="seo-fact sbg2">
 	                    <div class="p-4 d-flex justify-content-between align-items-center">
 	                        <div class="seofct-icon"><i class="ti-user"></i>Total Members</div>
-	                        <h2>0</h2>
+	                        <h2>{{ $data_counts['member'] }}</h2>
 	                    </div>
 	                </div>
 	            </div>
@@ -31,7 +30,7 @@
 	                <div class="seo-fact sbg3">
 	                    <div class="p-4 d-flex justify-content-between align-items-center">
 	                        <div class="seofct-icon"><i class="ti-location-arrow"></i>Total Active Lendings</div>
-	                        <h2>0</h2>
+	                        <h2>{{ $data_counts['lending'] }}</h2>
 	                    </div>
 	                </div>
 	            </div>
