@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +10,12 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
+});
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/home', 'HomeController@index');
 });
