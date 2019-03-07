@@ -29,7 +29,7 @@ class HomeController extends Controller
         $data_counts = [
             'member' => Member::count(),
             'movie' => Movie::count(),
-            'lending' => Lending::count()
+            'lending' => Lending::where('returned_date', null)->count()
         ];
 
         return view('dashboard', compact('data_counts'));

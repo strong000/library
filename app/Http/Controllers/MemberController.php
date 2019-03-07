@@ -9,7 +9,7 @@ class MemberController extends Controller
 {
 	public function index()
 	{
-		$member = Member::all();
+		$member = Member::where('is_active', 1)->get();
 
 		return view('member.index', compact('member'));
 	}
@@ -28,7 +28,7 @@ class MemberController extends Controller
 			'telephone' => $request->telephone,
 			'ic_number' => $request->ic_number,
 			'date_of_joined' => $request->date_of_joined,
-			'is_active' => $request->is_active
+			'is_active' => 1
 		]);
 
 		return redirect()->route('member_index')->with('member', 'create');
@@ -49,15 +49,40 @@ class MemberController extends Controller
         $data->telephone = $request->telephone;
         $data->ic_number = $request->ic_number;
         $data->date_of_joined = $request->date_of_joined;
-        $data->is_active = $request->is_active;
         $data->save();
-        return redirect()->route('member_index')->with('alert-success','Data berhasil diubah!');
+        return redirect()->route('member_index')->with('member', 'edit');
 	}
 	public function delete(Request $request, $id)
 	{
 		$data = Member::find($id);
         $data->delete();
-        return redirect()->route('member_index')->with('alert-success','Data berhasil didelete!');
+        return redirect()->route('member_index')->with('member', 'delete');
+	}
+
+	public function nonactive()
+	{
+		$member = Member::where('is_active', 0)->get();
+
+		return view('member.nonactive', compact('member'));
+	}
+
+
+	public function deactiveate($id) 
+	{
+		Member::find($id)->update([
+			'is_active' => 0
+		]);
+
+		return redirect()->route('member_index')->with('member', 'deactive');
+	}
+
+	public function activeate($id) 
+	{
+		Member::find($id)->update([
+			'is_active' => 1
+		]);
+
+		return redirect()->route('member_index')->with('member', 'active');
 	}
 
 	}

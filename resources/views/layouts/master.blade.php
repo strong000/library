@@ -84,7 +84,8 @@
                                     <li><a href="{{ route('home') }}"><i class="ti-dashboard"></i> <span>Dashboard</span></a></li>
                                     <li><a href="{{ route('movie_index') }}"><i class="ti-video-clapper"></i> <span>Movies</span></a></li>
                                     <li><a href="{{ route('member_index') }}"><i class="ti-user"></i> <span>Members</span></a></li>
-                                    <li><a href=""><i class="ti-location-arrow"></i> <span>Lendings</span></a></li>
+                                    <li><a href="{{ route('lending') }}"><i class="ti-location-arrow"></i> <span>Lendings</span></a></li>
+                                    <li><a href="{{ route('returnment') }}"><i class="ti-arrow-top-right"></i> <span>Returnment</span></a></li>
                                 </ul>
                             </nav>
                         </div>

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Add new Member')
+@section('title', 'Lend a Movie')
 
 @section('extra-css')
     <link rel="stylesheet" type="text/css" href="/assets/css/datatable/jquery.dataTables.css">
@@ -13,32 +13,30 @@
     <div class="col-12 mt-5">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title">Add New Member</h4>
-                    <form role="form" method="POST" action="{{ route('member_store') }}">
+                <h4 class="header-title">Lend a Movie</h4>
+                    <form role="form" method="POST" action="{{ route('lend_action') }}">
                         {!! csrf_field() !!}
                         <div class="form-group">
-                            <label for="name" class="col-form-label">Name</label>
-                            <input id="name" class="form-control" type="text" value="" name="name" required>
+                            <label for="title" class="col-form-label">Movie</label>
+                            <select class="form-control" name="movie_id" required>
+                                <option>-- SELECT MOVIE --</option>
+                                @foreach($movies as $movie)
+                                    <option value="{{ $movie->id }}">{{ $movie->title }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="age" class="col-form-label">Age</label>
-                            <input id="age" class="form-control" type="text" value="" name="age" required>
+                            <label for="title" class="col-form-label">Member</label>
+                            <select class="form-control" name="member_id" required>
+                                <option>-- SELECT MEMBER --</option>
+                                @foreach($members as $member)
+                                    <option value="{{ $member->id }}">{{ $member->ic_number }} - {{ $member->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="address" class="col-form-label">Address</label>
-                            <input id="address" class="form-control" type="text" value="" name="address" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="telephone" class="col-form-label">Telephone</label>
-                            <input id="telephone" class="form-control" type="text" value="" name="telephone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="ic_number" class="col-form-label">Ic Number</label>
-                            <input id="ic_number" class="form-control" type="text" value="" name="ic_number" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="date_of_joined" class="col-form-label">Date Of Joined</label>
-                            <input id="date_of_joined" class="form-control" type="date" value="" name="date_of_joined" required>
+                            <label for="released_date" class="col-form-label">Expected Return Date</label>
+                            <input id="released_date" class="form-control" type="date" value="" name="exp_return_date" required>
                         </div>
                         <div class="pull-right">
                             <a href="{{ route('movie_index') }}" class="btn btn-warning mt-4 pr-4 pl-4 text-white">Cancel</a>

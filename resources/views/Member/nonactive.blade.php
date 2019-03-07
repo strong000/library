@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Movie List')
+@section('title', 'Non-Active Member List')
 
 @section('extra-css')
     <link rel="stylesheet" type="text/css" href="/assets/css/datatable/jquery.dataTables.css">
@@ -14,34 +14,40 @@
     <div class="col-12 mt-5">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title">Movie List</h4>
-                <a href="{{ route('movie_create') }}" class="btn btn-flat btn-success btn-xs mb-3 pull-right"><i class="ti-plus"></i> Add new Movie</a>
+                <h4 class="header-title">Non-Active Member List</h4>
+                <a href="{{ route('member_create') }}" class="btn btn-flat btn-success btn-xs mb-3 pull-right"><i class="ti-plus"></i> Add new Member</a>
+                <a href="{{ route('member_index') }}" class="btn btn-flat btn-primary btn-xs mb-3 pull-right">Active Member</a>
                 <div class="data-tables">
                     <table id="dataTable" class="text-center">
                         <thead class="bg-light text-capitalize">
                             <tr>
                                 <th>No.</th>
-                                <th>Title</th>
-                                <th>Genre</th>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Address</th>
+                                <th>Telephone</th>
+                                <th>Ic Number</th>
                                 <th>Released Date</th>
-                                <th>Action</th>
+                                <th>action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @php($i = 1)
-                            @foreach($movies as $movie)
+                            @foreach($member as $members)
                                 <tr>
                                     <td>{{ $i }}</td>
-                                    <td>{{ $movie->title }}</td>
-                                    <td>{{ $movie->genre }}</td>
-                                    <td>{{ $movie->released_date }}</td>
+                                    <td>{{ $members->name }}</td>
+                                    <td>{{ $members->age }}</td>
+                                    <td>{{ $members->address }}</td>
+                                    <td>{{ $members->telephone }}</td>
+                                    <td>{{ $members->ic_number }}</td>
+                                    <td>{{ $members->date_of_joined }}</td>
                                     <td>
                                         <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">
                                             Action
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="{{ route('movie_edit', $movie->id) }}">Edit</a>
-                                            <a class="dropdown-item" href="{{ route('movie_delete', $movie->id) }}">Delete</a>
+                                            <a class="dropdown-item" href="{{ route('member_activate', $members->id) }}">Activate Member</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -63,27 +69,43 @@
     <script src="/assets/js/datatable/responsive.bootstrap.min.js"></script>
 
     <script type="text/javascript">
-        @if(session('movie') == 'create')
+        @if(session('member') == 'create')
             Swal.fire({
               type: 'success',
               title: 'Success!',
-              text: 'New movie has been added!'
+              text: 'New member has been added!'
             });
         @endif
 
-        @if(session('movie') == 'edit')
+        @if(session('member') == 'edit')
             Swal.fire({
               type: 'success',
               title: 'Success!',
-              text: 'Movie has been edited!'
+              text: 'Member has been edited!'
             });
         @endif
 
-        @if(session('movie') == 'delete')
+        @if(session('member') == 'delete')
             Swal.fire({
               type: 'success',
               title: 'Success!',
-              text: 'Movie has been deleted!'
+              text: 'Member has been deleted!'
+            });
+        @endif
+
+        @if(session('member') == 'deactive')
+            Swal.fire({
+              type: 'success',
+              title: 'Success!',
+              text: 'Member has been deactiveated!'
+            });
+        @endif
+
+        @if(session('member') == 'active')
+            Swal.fire({
+              type: 'success',
+              title: 'Success!',
+              text: 'Member has been activated!'
             });
         @endif
     </script>

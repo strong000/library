@@ -44,12 +44,12 @@ class MovieController extends Controller
         $data->genre = $request->genre;
         $data->released_date = $request->released_date;
         $data->save();
-        return redirect()->route('movie_index')->with('alert-success','Data berhasil diubah!');
+        return redirect()->route('movie_index')->with('movie','edit');
 	}
 	public function delete(Request $request, $id)
 	{
 		$data = Movie::find($id);
         $data->delete();
-        return redirect()->route('movie_index')->with('alert-success','Data berhasil didelete!');
+        return redirect()->route('movie_index')->with('movie','delete');
 	}
 }

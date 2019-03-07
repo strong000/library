@@ -16,6 +16,7 @@
             <div class="card-body">
                 <h4 class="header-title">Member List</h4>
                 <a href="{{ route('member_create') }}" class="btn btn-flat btn-success btn-xs mb-3 pull-right"><i class="ti-plus"></i> Add new Member</a>
+                <a href="{{ route('member_nonactive') }}" class="btn btn-flat btn-warning btn-xs mb-3 pull-right">Non-Active Member</a>
                 <div class="data-tables">
                     <table id="dataTable" class="text-center">
                         <thead class="bg-light text-capitalize">
@@ -48,6 +49,7 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="{{ route('member_edit', $members->id) }}">Edit</a>
                                             <a class="dropdown-item" href="{{ route('member_delete', $members->id) }}">Delete</a>
+                                            <a class="dropdown-item" href="{{ route('member_deactivate', $members->id) }}">Deactiveate Member</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -69,11 +71,43 @@
     <script src="/assets/js/datatable/responsive.bootstrap.min.js"></script>
 
     <script type="text/javascript">
-        @if(session('movie') == 'create')
+        @if(session('member') == 'create')
             Swal.fire({
               type: 'success',
               title: 'Success!',
-              text: 'New movie has been added!'
+              text: 'New member has been added!'
+            });
+        @endif
+
+        @if(session('member') == 'edit')
+            Swal.fire({
+              type: 'success',
+              title: 'Success!',
+              text: 'Member has been edited!'
+            });
+        @endif
+
+        @if(session('member') == 'delete')
+            Swal.fire({
+              type: 'success',
+              title: 'Success!',
+              text: 'Member has been deleted!'
+            });
+        @endif
+
+        @if(session('member') == 'deactive')
+            Swal.fire({
+              type: 'success',
+              title: 'Success!',
+              text: 'Member has been deactiveated!'
+            });
+        @endif
+
+        @if(session('member') == 'active')
+            Swal.fire({
+              type: 'success',
+              title: 'Success!',
+              text: 'Member has been activated!'
             });
         @endif
     </script>

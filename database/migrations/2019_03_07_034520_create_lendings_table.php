@@ -18,8 +18,9 @@ class CreateLendingsTable extends Migration
             $table->unsignedBigInteger('movie_id');
             $table->unsignedBigInteger('member_id');
             $table->date('lending_date');
-            $table->date('returned_date');
-            $table->bigInteger('lateness_charge');
+            $table->date('expected_return_date');
+            $table->date('returned_date')->nullable();
+            $table->bigInteger('lateness_charge')->nullable();
             $table->timestamps();
 
             $table->foreign('movie_id')
